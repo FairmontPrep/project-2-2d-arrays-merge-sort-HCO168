@@ -73,7 +73,6 @@ public class Board extends JFrame {
     }
 
     private void sortPieces(){
-
         for (Piece[] value : piecesArray) {
             Arrays.fill(value, null);
         }
@@ -100,17 +99,15 @@ public class Board extends JFrame {
         int cellHeight = getHeight() / tableSize;
         for(int y=0; y<tableSize; y++) {
             for(int x=0; x<tableSize; x++) {
-                if (x >= 0 && x < tableSize && y >= 0 && y < tableSize) {
-                    if(piecesArray[y][x]!=null) {
-                        ImageIcon icon = piecesArray[y][x].getImageIcon(cellWidth, cellHeight);
-                        if (icon != null) {
-                            JLabel pieceLabel = new JLabel(icon);
-                            squares[y][x].removeAll();
-                            squares[y][x].add(pieceLabel, BorderLayout.CENTER);
-                        }
-                    }else{
+                if (piecesArray[y][x] != null) {
+                    ImageIcon icon = piecesArray[y][x].getImageIcon(cellWidth, cellHeight);
+                    if (icon != null) {
+                        JLabel pieceLabel = new JLabel(icon);
                         squares[y][x].removeAll();
+                        squares[y][x].add(pieceLabel, BorderLayout.CENTER);
                     }
+                } else {
+                    squares[y][x].removeAll();
                 }
             }
         }
